@@ -1,29 +1,27 @@
 import * as S from './styles'
-
-import { Produto } from '../../App'
-
 import cesta from '../../assets/cesta.png'
-import { paraReal } from '../Produto'
+import { RootReduceType } from '../../app/rootReduce'
+import { useSelector, useDispatch } from 'react-redux'
+import { total } from '../../features/cart/cart-slice'
+import { useEffect } from 'react'
 
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
+const Header = () => {
+  const cartState = useSelector((state: RootReduceType) => state.cart)
+  const favoriteState = useSelector((state: RootReduceType) => state.favorite)
+  const dispatch = useDispatch()
 
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
-    acc += item.preco
-    return acc
-  }, 0)
+  useEffect(() => {
+    dispatch(total())
+  }, [cartState.amount])
 
   return (
     <S.Header>
       <h1>EBAC Sports</h1>
       <div>
-        <span>{favoritos.length} favoritos</span>
+        <span>{favoriteState.amount} favoritos</span>
         <img src={cesta} />
         <span>
-          {itensNoCarrinho.length} itens, valor total: {paraReal(valorTotal)}
+          {cartState.amount} itens, valor total: {cartState.total}
         </span>
       </div>
     </S.Header>

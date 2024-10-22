@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 import { cores } from '../../styles'
 
-export const Produto = styled.div``
+export const Product = styled.div``
 
-export const Titulo = styled.h3`
+export const Title = styled.h3`
   min-height: 64px;
 `
 
-export const Capa = styled.div`
+export const Layer = styled.div`
   position: relative;
 
   img {
@@ -60,7 +60,7 @@ export const Plataformas = styled.ul`
     font-weight: bold;
   }
 `
-export const BtnComprar = styled.button`
+export const BtnBuy = styled.button`
   display: block;
   width: 100%;
   background-image: linear-gradient(
